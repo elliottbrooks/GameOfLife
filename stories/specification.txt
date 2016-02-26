@@ -1,0 +1,41 @@
+Feature:
+
+	A game of life consists of a square grid of cells. A cell can be either live or dead.
+	A game advances one turn at a time. At each turn rules are applied to each cell which determine its liveness in the next state
+
+Scenario: Underpopulation
+	Given a game of life
+	When a live cell has fewer than two neighbours
+	Then this cell dies
+
+Scenario: Overcrowding
+	Given a game of life
+	When a live cell has more than three neighbours
+	Then this cell dies
+
+Scenario: Survival
+	Given a game of life
+	When a live cell has two or three neighbours
+	Then this cell stays alive
+
+Scenario: Creation of Life
+	Given a game of life
+	When a dead cell has exactly three neighbours
+	Then this cell becomes alive
+	
+Scenario: No live cells
+	Given a game of life with the initial state consisting of all dead cells
+	When the game evolves one turn
+	Then the next state is also all dead cells
+
+Scenario: Expected game outcome
+	Given a game of life with the initial state
+	*.*
+    *..
+    ***
+	When the game evolves one turn 
+    Then the next state is 
+	.*.
+	*..
+	**.
+

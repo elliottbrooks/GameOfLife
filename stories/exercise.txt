@@ -1,0 +1,46 @@
+Specification of input:
+	The initial state is defined as a String with the following character definitions
+		.     dead cell
+		*     live cell
+     newline  next line of grid
+
+e.g.
+
+..*.*..
+.*....* <-- Live cell
+...*...
+     ^
+     |
+     |
+     Dead cell
+
+
+Assumptions...
+
+ALL INPUTS ARE VALID (NON-EMPTY, VALID CHARACTERS AND BALANCED LINES)
+
+
+Scenario: No live cells
+	Given a game of life
+	When the initial state consists of all dead cells
+	Then the next state is also all dead cells
+
+Scenario: Underpopulation
+	Given a game of life
+	When a live cell has fewer than two neighbours
+	Then this cell dies
+
+Scenario: Overcrowding
+	Given a game of life
+	When a live cell has more than three neighbours
+	Then this cell dies
+
+Scenario: Survival
+	Given a game of life
+	When a live cell has two or three neighbours
+	Then this cell stays alive
+
+Scenario: Creation of Life
+	Given a game of life
+	When a dead cell has exactly three neighbours
+	Then this cell becomes alive
